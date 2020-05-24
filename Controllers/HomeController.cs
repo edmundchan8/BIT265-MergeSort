@@ -41,7 +41,6 @@ namespace BIT265_MergeSort.Controllers
                 if (ivm.WifiHours != null)
                 {
                     var wifi = _dbc.WifiHotposts.Where(w => w.City == "EVERETT"));
-
                     wifi = mergeSortServices.MergeSort(_dbc.WifiHotposts.Any());
                     return RedirectToAction("Result", dm);
                 }
