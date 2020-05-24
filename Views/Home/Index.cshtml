@@ -1,0 +1,13 @@
+﻿@model BIT265_MergeSort.Models.IndexViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Merge Sort</h1>
+    <p>Please enter in a larger number </p>
+
+    <form asp-action="index" asp-controller="home">
+        <input asp-for="WifiHours" type="submit" value="Wifi Hours"/>
+    </form>
+</div>

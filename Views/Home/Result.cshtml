@@ -1,0 +1,23 @@
+﻿@model List<int>
+
+@{
+    ViewData["Title"] = "Result";
+}
+
+<h1>Result</h1>
+
+<table>
+    <tbody>
+        @foreach (int m in @Model)
+        {
+            <tr>
+                <td>@m</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<form>
+    <label>Click to return to search screen</label>
+    <input asp-controller="home" asp-action="index" type="submit" value="Click me" />
+</form>
