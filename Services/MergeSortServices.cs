@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BIT265_MergeSort.Models;
+using Castle.Core.Internal;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,13 +9,14 @@ namespace BIT265_MergeSort.Services
 {
     public class MergeSortServices : IMergeSortServices
     {
-        public List<int> MergeSort(List<int> unsorted)
+        public List<IQueryable<WifiHotspotsModel>> MergeSort(List<IQueryable<WifiHotspotsModel>> unsorted)
         {
             if (unsorted.Count <= 1)
                 return unsorted;
 
-            List<int> left = new List<int>();
-            List<int> right = new List<int>();
+            List<IQueryable<WifiHotspotsModel>> left = new List<IQueryable<WifiHotspotsModel>>();
+
+            List<IQueryable<WifiHotspotsModel>> right = new List<IQueryable<WifiHotspotsModel>>();
 
             int middle = unsorted.Count / 2;
             for (int i = 0; i < middle; i++)  //Dividing the unsorted list
@@ -30,15 +33,15 @@ namespace BIT265_MergeSort.Services
             return Merge(left, right);
         }
 
-        public List<int> Merge(List<int> left, List<int> right)
+        public List<IQueryable<WifiHotspotsModel>> Merge(List<IQueryable<WifiHotspotsModel>> left, List<IQueryable<WifiHotspotsModel>> right)
         {
-            List<int> result = new List<int>();
+            List<IQueryable<WifiHotspotsModel>> result = new List<IQueryable<WifiHotspotsModel>>();
 
             while (left.Count > 0 || right.Count > 0)
             {
                 if (left.Count > 0 && right.Count > 0)
                 {
-                    if (left.First() <= right.First())  //Comparing First two elements to see which is smaller
+                    if (left.FirstOrDefault().Select(l => l.Id)  <= right.FirstOrDefault().Select(l => l.Id))  //Comparing First two elements to see which is smaller
                     {
                         result.Add(left.First());
                         left.Remove(left.First());      //Rest of the list minus the first element
